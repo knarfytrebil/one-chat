@@ -88,12 +88,6 @@ class IndexHandler(tornado.web.RequestHandler):
 			self.set_cookie(name='uinfo',value=uinfo)
 		self.redirect('/')
 
-
-class SocketIOHandler(tornado.web.RequestHandler):
-	def get(self):
-		self.render('socket.io.js')
-
-
 class ChatConnection(tornadio2.conn.SocketConnection):
 	# Class level variable
 	participants = set()
@@ -122,7 +116,7 @@ class ChatConnection(tornadio2.conn.SocketConnection):
 					p.send(msg.content)
 
 	def on_close(self):
-		if self.admin = 1:
+		if self.admin == 1:
 			global ADMIN
 			ADMIN = 0
 		self.participants.remove(self)
@@ -163,9 +157,10 @@ sock_app = tornado.web.Application(
 )
 
 # Create HTTP application
-http_app = tornado.web.Application(
-	[(r"/", IndexHandler), (r"/socket.io.js", SocketIOHandler)]
-)
+http_app = tornado.web.Application([
+		(r"/", IndexHandler), 
+		(r"/static/(.*)", tornado.web.StaticFileHandler, {"path": op.join(ROOT, 'static/')} )
+	])
 
 if __name__ == "__main__":
 	import logging

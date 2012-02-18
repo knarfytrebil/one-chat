@@ -2,13 +2,17 @@
 <html>
 <head>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-  <script src="socket.io.js"></script>
+  <script src="http://117.102.189.222:8001/static//socket.io.js"></script>
   <script>
     $(function() {
-        var s = new io.connect('http://' + window.location.hostname + ':8002/chat', {
+        
+        WEB_SOCKET_SWF_LOCATION = 'http://' + host + ':8001/static/WebSocketMain.swf';
+
+        var host = "117.102.189.222"
+        var s = new io.connect('http://' + host + ':8002/chat', {
             rememberTransport: false
             });
-        var ping = new io.connect('http://' + window.location.hostname + ':8002/ping');
+        var ping = new io.connect('http://' + host + ':8002/ping');
         
         // Establish event handlers
         s.on('disconnect', function() {
