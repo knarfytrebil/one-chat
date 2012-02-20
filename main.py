@@ -55,34 +55,35 @@ class JsonObject(dict):
 
 class User:
 	"""docstring for User"""
-	def __init__(self, ip, ua, level):
-		self.ua = ua
+	def __init__(self, ip):
 		self.ip = ip
+		self.uid = ""
+		self.admin = 0
+		self.nick = ""
 	
-	def uid(self):
-		import time
-		now = str(int(time.time()))
-		return encrypt(self.ua+self.ip+now)
+	def GenUid(self):
+		self.uid = encrypt(self.ip + self.nick)
+	
+	def GenNick(self):
+		import time,random
+		self.nick = str(int(time.time())) + str(random.randint(10000,20000))
 
 class IndexHandler(tornado.web.RequestHandler):
 	"""Regular HTTP handler to serve the chatroom page"""
 	def get(self):
 		info = self.request.headers
 		cookie = self.get_cookie('uinfo')
-		user = User(info['Host'],info['User-Agent'],0)
-		uid = user.uid()
 		if not cookie:
-			self.render('login.html',uid=uid)
+			self.render('login.html')
 		else:
 			if decrypt(cookie).split("##")[0] == USERNAME and decrypt(cookie).split("##")[1] == PASSWD:
-				self.render('chatserv.html',uid=uid)
+				self.render('chatserv.html')
 			else:
-				self.render('login.html',uid=uid)
+				self.render('login.html')
 	
 	def post(self):
 		u = self.get_arguments('username')[0]
 		p = self.get_arguments('password')[0]
-		uid = self.get_arguments('uid')[0]
 		if u == USERNAME and p == PASSWD:
 			uinfo = encrypt(u + '##' + p)
 			self.set_cookie(name='uinfo',value=uinfo)
@@ -91,11 +92,15 @@ class IndexHandler(tornado.web.RequestHandler):
 class ChatConnection(tornadio2.conn.SocketConnection):
 	# Class level variable
 	participants = set()
-	uid = ""
-	admin = 0
+	user = None
 
 	def on_open(self, info):
-		self.send("Welcome from the server.")
+		self.send(dict(sys="Initiating Connection..."))
+		self.user = User(info.ip)
+		self.user.GenNick()
+		self.user.GenUid()
+		self.send(dict(uid=self.user.uid))
+		self.send(dict(sys="Connection Established..."))
 		self.participants.add(self)
 
 	def on_message(self, message):
@@ -104,19 +109,19 @@ class ChatConnection(tornadio2.conn.SocketConnection):
 			msg = json.loads(message,object_hook=_obj_hook)
 		except ValueError:
 			pass
-		if str(msg.type) == 'uid':
-			self.uid = msg.content
-		elif str(msg.type) == 'IdentifyAdminNow':
-			self.admin = 1
+
+		if str(msg.type) == 'IdentifyAdminNow':
+			self.user.admin = 1
+			self.user.nick = "Service"
 			global ADMIN
 			ADMIN = 1
 		else:
 			for p in self.participants:
-				if p.uid == str(msg.type) or p.admin == 1:
-					p.send(msg.content)
+				if p.user.uid == str(msg.type) or p.user.admin == 1:
+					p.send(dict(chat=msg.content,nick=p.user.nick))
 
 	def on_close(self):
-		if self.admin == 1:
+		if self.user.admin == 1:
 			global ADMIN
 			ADMIN = 0
 		self.participants.remove(self)
