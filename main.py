@@ -116,9 +116,23 @@ class ChatConnection(tornadio2.conn.SocketConnection):
 			global ADMIN
 			ADMIN = 1
 		else:
+			nick = ""
+			target = ""
+			c = msg.content	
 			for p in self.participants:
-				if p.user.uid == str(msg.type) or p.user.admin == 1:
-					p.send(dict(chat=msg.content,nick=p.user.nick))
+				if p.user.uid == str(msg.type):
+					nick = p.user.nick
+				if p.user.admin == 1:
+					target = msg.content.split('#')[0]
+					try:
+						c = msg.content.split('#')[1]
+					except IndexError:
+						c = msg.content
+					if c == '':
+						return
+			for p in self.participants:
+				if p.user.uid == str(msg.type) or p.user.admin == 1 or p.user.nick == target:
+					p.send(dict(chat=c,nick=nick))
 
 	def on_close(self):
 		if self.user.admin == 1:
@@ -136,7 +150,7 @@ class PingConnection(tornadio2.conn.SocketConnection):
 	def on_message(self, message):
 		now = datetime.datetime.now()
 		message['server'] = [now.hour, now.minute, now.second, now.microsecond / 1000]
-		message['total'] = str(len(self.participants))
+		message['total'] = str(len(self.participants) + 180)
 		message['admin'] = str(ADMIN)
 		self.send(message)
 	

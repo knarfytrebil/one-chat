@@ -2,12 +2,12 @@
 <html>
 <head>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-	<script src="http://localhost:8001/static/socket.io.js"></script>
-	<link rel="stylesheet" href="http://localhost:8001/static/style.css" type="text/css"/>
+	<script src="http://117.102.189.222:8001/static/socket.io.js"></script>
+	<link rel="stylesheet" href="http://117.102.189.222:8001/static/style.css" type="text/css"/>
 	<script type="text/javascript">
 	var uid = ""
 	$(function() {
-		var host = "localhost";
+		var host = "117.102.189.222";
 		WEB_SOCKET_SWF_LOCATION = 'http://' + host + ':8001/static/WebSocketMain.swf';
 		var s = new io.connect('http://' + host + ':8002/chat', {
 			rememberTransport: false
@@ -61,6 +61,17 @@
 			setTimeout(sendPing, 5000);
 		}
 		
+		//now time
+function pubDate(){
+	var date = new Date()
+	var vYear = date.getFullYear()
+	var vMon = date.getMonth() + 1
+	var vDay = date.getDate()
+	var h = date.getHours(); 
+	var m = date.getMinutes(); 
+	var se = date.getSeconds(); 
+	return vYear +"-" +(vMon<10 ? "0" + vMon : vMon) +"-" +(vDay<10 ? "0"+ vDay : vDay) +" " +(h<10 ? "0"+ h : h) +":" +(m<10 ? "0" + m : m) +":" +(se<10 ? "0" +se : se);
+}
 		sendPing();
 
 		s.on('connect', function() {
@@ -70,12 +81,13 @@
 
 		s.on('message', function(data) {
 			if (data.sys != undefined) {
-				$("#log").append("<table class='message'><tr><td class='date'>"+"--:--"+"</td><td valign='top' class='nick'>SYSTEM</td><td class='msg-text'>"+ data.sys +"</td></tr></table>");
+				$("#log").append("<table class='message'><tr><td class='date'>"+pubDate()+"</td><td valign='top' class='nick'>SYSTEM</td><td class='msg-text'>"+ data.sys +"</td></tr></table>");
 			}else if( data.chat != undefined){
-				$("#log").append("<table class='message'><tr><td class='date'>"+"--:--"+"</td><td valign='top' class='nick'>" +  data.nick + "</td><td class='msg-text'>"+ data.chat +"</td></tr></table>");
+				$("#log").append("<table class='message'><tr><td class='date'>"+pubDate()+"</td><td valign='top' class='nick'>" +  data.nick + "</td><td class='msg-text'>"+ data.chat +"</td></tr></table>");
 			}else if (data.uid != undefined ){
 				uid = data.uid
 			};
+			$("#log").scrollTop($("#log")[0].scrollHeight);
 		});
 
 		//send the message when submit is clicked
@@ -83,6 +95,7 @@
 			var line = $('#chatform [type=text]').val();
 			$('#chatform [type=text]').val('');
 			s.send('{"type":"' + uid + '","content":"' + line + '"}');
+			$("#log").scrollTop($("#log")[0].scrollHeight);
 			return false;
 		});
 	});
@@ -91,11 +104,6 @@
 	<body>
 		<div id="app">
 			<div id="log">
-				<table class="message">
-					<tr>
-						<td class="date">--:--</td><td valign="top" class="nick">系统</td><td class="msg-text">欢迎来到客服系统!</td>
-					</tr>
-				</table>
 			</div>
 			<div id="toolbar">
 				<ul id="status">
