@@ -1,94 +1,259 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-  <script src="http://117.102.189.222:8001/static//socket.io.js"></script>
-  <script>
-    $(function() {
-        
-        WEB_SOCKET_SWF_LOCATION = 'http://' + host + ':8001/static/WebSocketMain.swf';
-
-        var host = "117.102.189.222"
-        var s = new io.connect('http://' + host + ':8002/chat', {
-            rememberTransport: false
-            });
-        var ping = new io.connect('http://' + host + ':8002/ping');
-        
-        // Establish event handlers
-        s.on('disconnect', function() {
-            sock.socket.reconnect();
-        });
-        
-        function getPrintableDate(date) {
-          return date.getFullYear().toString() + '/' +
-             (date.getMonth()+1).toString() + '/' +
-             date.getDate().toString() + ' ' +
-             date.getHours().toString() + ':' +
-             date.getMinutes().toString() + ':' +
-             date.getSeconds().toString() + '.' +
-             date.getMilliseconds().toString();
-        }
-
-        function encodeDate(date)
-        {
-            return [date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds()];
-        }
-
-        function decodeDate(data)
-        {
-            var date = new Date();
-            return new Date(date.getFullYear(), date.getMonth(), date.getDate(),
-                            data[0], data[1], data[2], data[3]);
-        }
-
-        // Ping
-        ping.on('message', function(data) {
-            var client = decodeDate(data.client);
-            var server = decodeDate(data.server);
-            var total = data.total
-            var now = new Date();
-
-            $('#ping').html('Ping: ' + (now.getTime() - client.getTime()).toString() + ' ms.<br/>' +
-                            'C2S: ' + (server.getTime() - client.getTime()).toString() + ' ms.<br/>' +
-                            'Total Online: ' + total
-                            );
-        });
-
-        function sendPing()
-        {
-            ping.json.send({client: encodeDate(new Date()) });
-            setTimeout(sendPing, 5000);
-        }
-        
-        sendPing();
-
-        s.on('connect', function() {
-            s.send('{"type":"sys","content":"New participant joined"}');
-            s.send('{"type":"uid","content":"{{ uid }}"}')
-        });
-
-        s.on('message', function(data) {
-            $("#chat").append("<div>" + data + "</div>");
-        });
-
-        //send the message when submit is clicked
-        $('#chatform').submit(function (evt) {
-            var line = $('#chatform [type=text]').val();
-            $('#chatform [type=text]').val('');
-            s.send('{"type":"{{ uid }}","content":"' + line + '"}');
-            return false;
-        });
-    });
-</script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script src="http://117.102.189.222:8001/static//socket.io.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<title>无标题文档</title>
+	<link href="http://117.102.189.222:8001/static/css/bootstrap.min.css" rel="stylesheet">
+	<link href="http://117.102.189.222:8001/static/css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link href="http://117.102.189.222:8001/static/css/style.css" rel="stylesheet">
 </head>
-<body>
-<h3>Chat!</h3>
-<div id="ping"></div>
-<div id="chat" style="width: 60em; height: 20em; overflow:auto; border: 1px solid black">
+
+<body id="bd">
+<div class="navbar navbar-fixed-top">
+	  <div class="navbar-inner">
+		<div class="container-fluid">
+		  <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		  </a>
+		  <a class="brand" href="#">Project name</a>
+		  <div class="nav-collapse">
+			<ul class="nav">
+			  <li class="active"><a href="#">Home</a></li>
+			  <li><a href="#about">About</a></li>
+			  <li><a href="#contact">Contact</a></li>
+			</ul>
+			<p class="pull-left navbar-text">Logged in as <a href="#">username</a></p>
+			<div class="r-s">
+				<form class="navbar-search" action="">
+					<input class="search-query span2" type="text" placeholder="Search">
+				</form>
+			</div>
+		  </div><!--/.nav-collapse -->
+		</div>
+	  </div>
+	</div>
+<div class="container-fluid">
+	  <div class="row-fluid">
+		<div class="span3 bg-none">
+			<div class="span3-con">
+				<div class="well" id = "statistics">
+				</div>
+			</div>
+		</div>
+		<div class="span6">
+		 <table class="table table-striped">
+			<tbody>
+			  <tr>
+				<td width="120"><span class="label label-success">133013960418905</span><div><i class="icon-time"></i>11:31:31</div></td>
+				<td>Mark</td>
+			  </tr>
+			  <tr>
+				<td><span class="label label-success">133013960418905</span><div><i class="icon-time"></i>11:31:31</div></td>
+				<td>JacobJacobJacobJacobJacobJacobJacob</td>
+			  </tr>
+			  <tr>
+				<td><span class="label label-important">133013960418905</span><div><i class="icon-time"></i>11:31:31</div></td>
+				<td>Stu</td>
+			  </tr>
+			  <tr>
+				<td><span class="label label-info">133013960418905</span><div><i class="icon-time"></i>11:31:31</div></td>
+				<td>JacobJacobJacobJacobJacobJacobJacob</td>
+			  </tr>
+			  <tr>
+				<td><span class="label">133013960418905</span><div><i class="icon-time"></i>11:31:31</div></td>
+				<td>Stu</td>
+			  </tr>
+			  <tr>
+				<td><span class="label label-important">133013960418905</span><div><i class="icon-time"></i>11:31:31</div></td>
+				<td>Stu</td>
+			  </tr>
+			  <tr>
+				<td><span class="label label-info">133013960418905</span><div><i class="icon-time"></i>11:31:31</div></td>
+				<td>JacobJacobJacobJacobJacobJacobJacob</td>
+			  </tr>
+			  <tr>
+				<td><span class="label">133013960418905</span><div><i class="icon-time"></i>11:31:31</div></td>
+				<td>JacobJacobJacobJacobJacobJacobJacob都是借口了打算离开角度上来看角度上来看大家实力可见的熟练度上的</td>
+			  </tr>
+			  <tr>
+				<td><span class="label label-info">133013960418905</span><div><i class="icon-time"></i>11:31:31</div></td>
+				<td>都是借口了打算离开角度上来看角度上来看大家实力可见的熟练度上的都是借口了打算离开角度上来看角度上来看大家实力可见的熟练度上的都是借口了打算离开角度上来看角度上来看大家实力可见的熟练度上的都是借口了打算离开角度上来看角度上来看大家实力可见的熟练度上的都是借口了打算离开角度上来看角度上来看大家实力可见的熟练度上的</td>
+			  </tr>
+			  <tr>
+				<td><span class="label label-info">133013960418905</span><div><i class="icon-time"></i>11:31:31</div></td>
+				<td>JacobJacobJacobJacobJacobJacobJacob都是借口了打算离开角度上来看角度上来看大家实力可见的熟练度上的</td>
+			  </tr>
+			  <tr>
+				<td><span class="label label-info">133013960418905</span><div><i class="icon-time"></i>11:31:31</div></td>
+				<td>都是借口了打算离开角度上来看角度上来看大家实力可见的熟练度上的都是借口了打算离开角度上来看角度上来看大家实力可见的熟练度上的都是借口了打算离开角度上来看角度上来看大家实力可见的熟练度上的都是借口了打算离开角度上来看角度上来看大家实力可见的熟练度上的都是借口了打算离开角度上来看角度上来看大家实力可见的熟练度上的</td>
+			  </tr>
+			  <tr>
+				<td><span class="label label-info">133013960418905</span><div><i class="icon-time"></i>11:31:31</div></td>
+				<td>JacobJacobJacobJacobJacobJacobJacob都是借口了打算离开角度上来看角度上来看大家实力可见的熟练度上的</td>
+			  </tr>
+			  <tr>
+				<td><span class="label label-info">133013960418905</span><div><i class="icon-time"></i>11:31:31</div></td>
+				<td>都是借口了打算离开角度上来看角度上来看大家实力可见的熟练度上的都是借口了打算离开角度上来看角度上来看大家实力可见的熟练度上的都是借口了打算离开角度上来看角度上来看大家实力可见的熟练度上的都是借口了打算离开角度上来看角度上来看大家实力可见的熟练度上的都是借口了打算离开角度上来看角度上来看大家实力可见的熟练度上的</td>
+			  </tr>
+			  <tr>
+				<td><span class="label label-info">133013960418905</span><div><i class="icon-time"></i>11:31:31</div></td>
+				<td>JacobJacobJacobJacobJacobJacobJacob都是借口了打算离开角度上来看角度上来看大家实力可见的熟练度上的</td>
+			  </tr>
+			  <tr>
+				<td><span class="label label-info">133013960418905</span><div><i class="icon-time"></i>11:31:31</div></td>
+				<td>都是借口了打算离开角度上来看角度上来看大家实力可见的熟练度上的都是借口了打算离开角度上来看角度上来看大家实力可见的熟练度上的都是借口了打算离开角度上来看角度上来看大家实力可见的熟练度上的都是借口了打算离开角度上来看角度上来看大家实力可见的熟练度上的都是借口了打算离开角度上来看角度上来看大家实力可见的熟练度上的</td>
+			  </tr>
+			</tbody>
+		  </table>
+		</div>
+		<div class="span3">
+			<ul class="nav nav-list">
+			  <li class="active"><span class="label label-success">邮件</span><a href="#">133013960418905</a></li>
+			  <li><span class="label">野人</span><a href="#">133013960418905</a></li>
+			  <li><span class="label label-important">其他</span><a href="#">133013960418905</a></li>
+			  <li><span class="label label-info">搜索引擎</span><a href="#">133013960418905</a></li>
+			  <li><a href="#">133013960418905</a></li>
+			  <li><a href="#">133013960418905</a></li>
+			  <li><a href="#">133013960418905</a></li>
+			  <li><a href="#">133013960418905</a></li>
+			  <li><a href="#">133013960418905</a></li>
+			  <li><a href="#">133013960418905</a></li>
+			  <li><a href="#">133013960418905</a></li>
+			  <li><a href="#">133013960418905</a></li>
+			  <li><a href="#">133013960418905</a></li>
+			   <li><a href="#">133013960418905</a></li>
+			  <li><a href="#">133013960418905</a></li>
+			  <li><a href="#">133013960418905</a></li>
+			  <li><a href="#">133013960418905</a></li>
+			  <li><a href="#">133013960418905</a></li>
+			  <li><a href="#">133013960418905</a></li>
+			  <li><a href="#">133013960418905</a></li>
+			  <li><a href="#">133013960418905</a></li>
+			  <li><a href="#">133013960418905</a></li>
+			  <li><a href="#">133013960418905</a></li>
+			  <li><a href="#">133013960418905</a></li>
+			  <li><a href="#">133013960418905</a></li>
+			   <li><a href="#">133013960418905</a></li>
+			  <li><a href="#">133013960418905</a></li>
+			  <li><a href="#">133013960418905</a></li>
+			  <li><a href="#">133013960418905</a></li>
+			  <li><a href="#">133013960418905</a></li>
+			  <li><a href="#">133013960418905</a></li>
+			  <li><a href="#">133013960418905</a></li>
+			  <li><a href="#">133013960418905</a></li>
+			  <li><a href="#">133013960418905</a></li>
+			  <li><a href="#">133013960418905</a></li>
+			  <li><a href="#">133013960418905</a></li>
+			  <li><a href="#">133013960418905</a></li>
+			 </ul>          
+		</div>
+		
+	  </div>
+	  
 </div>
-<form id="chatform">
-<input type="text" />
-<input type="submit" />
-</form>
+<div class="navbar-inner-bottom">
+	<form id = "chatform">
+	<input type="text" id="chat"/>
+	<input type="submit" />
+	</form>
+</div>
+<script src="http://117.102.189.222:8001/static/js/jquery-1.7.1.min.js"></script>
+<script src="http://117.102.189.222:8001/static/js/bootstrap.min.js"></script>
+<script src="http://117.102.189.222:8001/static/js/bootstrap-tab.js"></script>
+<script src="http://117.102.189.222:8001/static/js/bootstrap-typeahead.js"></script>
+<script src="http://117.102.189.222:8001/static/js/flot.js"></script>
+<script type="text/javascript">
+	$(function(){
+		///CSS Tweaks
+		$(".span3").height($(document).height()-55)
+		$(".span6").height($(document).height()-55);
+		$(".r-s").width($(".span3").width());
+		
+		$("#chat").width($(".span6").width())
+		var wd = $(".span6").width();
+	
+		$("#chat").css("margin-left",-wd/2)
+		$(".well").width($(".span3").width());
+
+		///WebSocket Starts
+		WEB_SOCKET_SWF_LOCATION = 'http://' + host + ':8001/static/WebSocketMain.swf';
+
+		var host = "117.102.189.222"
+		var s = new io.connect('http://' + host + ':8002/chat', {
+			rememberTransport: false
+			});
+		var ping = new io.connect('http://' + host + ':8002/ping');
+		
+		// Establish event handlers
+		s.on('disconnect', function() {
+			sock.socket.reconnect();
+		});
+		
+		function getPrintableDate(date) {
+		  return date.getFullYear().toString() + '/' +
+			 (date.getMonth()+1).toString() + '/' +
+			 date.getDate().toString() + ' ' +
+			 date.getHours().toString() + ':' +
+			 date.getMinutes().toString() + ':' +
+			 date.getSeconds().toString() + '.' +
+			 date.getMilliseconds().toString();
+		}
+
+		function encodeDate(date)
+		{
+			return [date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds()];
+		}
+
+		function decodeDate(data)
+		{
+			var date = new Date();
+			return new Date(date.getFullYear(), date.getMonth(), date.getDate(),
+							data[0], data[1], data[2], data[3]);
+		}
+
+		// Ping
+		ping.on('message', function(data) {
+			var client = decodeDate(data.client);
+			var server = decodeDate(data.server);
+			var total = data.total
+			var now = new Date();
+
+			$('#statistics').html('Ping: ' + (now.getTime() - client.getTime()).toString() + ' ms.<br/>' +
+							'C2S: ' + (server.getTime() - client.getTime()).toString() + ' ms.<br/>' +
+							'Total Online: ' + total
+							);
+		});
+
+		function sendPing()
+		{
+			ping.json.send({client: encodeDate(new Date()) });
+			setTimeout(sendPing, 5000);
+		}
+		
+		sendPing();
+
+		s.on('connect', function() {
+			s.send('{"type":"sys","content":"New participant joined"}');
+			s.send('{"type":"uid","content":"{{ uid }}"}')
+		});
+
+		s.on('message', function(data) {
+			$("#chat").append("<div>" + data + "</div>");
+		});
+
+		//send the message when submit is clicked
+		$('#chatform').submit(function (evt) {
+			var line = $('#chatform [type=text]').val();
+			$('#chatform [type=text]').val('');
+			s.send('{"type":"{{ uid }}","content":"' + line + '"}');
+			return false;
+		});
+	});
+</script>
 </body>
 </html>

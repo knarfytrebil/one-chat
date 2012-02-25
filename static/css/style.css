@@ -1,0 +1,36 @@
+@charset "utf-8";
+/* CSS Document */
+body{ padding-top: 50px;height:100%;overflow-y:auto;overflow-x:hidden}
+.row-fluid [class*="span"] {background-color: #EEEEEE;border-radius: 3px 3px 3px 3px;line-height: 30px;min-height: 30px;text-align: center;}
+.row-fluid .nav-list{ text-align:left}
+.row-fluid .span3{height:100%; position:relative;}
+.row-fluid .span3.bg-none{ background:none}
+.row-fluid .span3 .span3-con{ position:fixed; _position:absolute; background:none;left:0;}
+.row-fluid .span6{ background:#fff; position:relative}
+.navbar-inner-bottom{ position:fixed;_position:absolute;bottom:0;left:0; width:100%;background:#2C2C2C;height:42px;}
+.navbar-inner-bottom input{position:fixed;_position:absolute;bottom:0;left:50%}
+.nav-list{height:600px;}
+.span3 .label{ position:absolute;right:0;bottom:0;*right:10px}
+.span6 .label{ font-size:12px;}
+.row-fluid .nav-list li{ margin-bottom:3px; clear:both; position:relative; float:left; width:100%;}
+.search{ margin-top:15px; width:250px; +margin-bottom:-20px} 
+.table td{ word-break:break-all}
+.span6 td div{color:#999; padding-top:3px}
+.navbar-fixed-top p.se{ position:relative;top:3px;right:10px}
+.navbar-search{ float:none;} 
+.navbar-inner .r-s{float:right}
+.navbar-search input{ border-radius:0;}
+.nav-list .active a{ width:100%} 
+.well{ width:100%;padding:0}
+.well span{ font-size:28px;}
+.well span font{ font-size:28px;color: #F00}
+.cf:before, .cf:after {
+    content:"";
+    display:table;
+}
+.cf:after {
+    clear:both;
+}
+.cf {
+    zoom:1;
+}

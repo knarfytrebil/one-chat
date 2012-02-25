@@ -35,18 +35,14 @@ def decrypt(s):
 	return decode("".join(r))
 
 def _obj_hook(pairs):
-	'''
-	convert json object to python object.
-	'''
+	'''convert json object to python object. '''
 	o = JsonObject()
 	for k, v in pairs.iteritems():
 		o[str(k)] = v
 	return o
 
 class JsonObject(dict):
-	'''
-	general json object that can bind any fields.
-	'''
+	'''general json object that can bind any fields. '''
 	def __getattr__(self, attr):
 		return self[attr]
 
@@ -100,7 +96,7 @@ class ChatConnection(tornadio2.conn.SocketConnection):
 		self.user.GenNick()
 		self.user.GenUid()
 		self.send(dict(uid=self.user.uid))
-		self.send(dict(sys="Connection Established..."))
+		self.send(dict(sys="Warning.. %s Connected...." % self.user.uid))
 		self.participants.add(self)
 
 	def on_message(self, message):
