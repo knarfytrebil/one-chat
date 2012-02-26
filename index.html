@@ -12,31 +12,6 @@
 </head>
 
 <body id="bd">
-<div class="navbar navbar-fixed-top">
-	  <div class="navbar-inner">
-		<div class="container-fluid">
-		  <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		  </a>
-		  <a class="brand" href="#">Project name</a>
-		  <div class="nav-collapse">
-			<ul class="nav">
-			  <li class="active"><a href="#">Home</a></li>
-			  <li><a href="#about">About</a></li>
-			  <li><a href="#contact">Contact</a></li>
-			</ul>
-			<p class="pull-left navbar-text">Logged in as <a href="#">username</a></p>
-			<div class="r-s">
-				<form class="navbar-search" action="">
-					<input class="search-query span2" type="text" placeholder="Search">
-				</form>
-			</div>
-		  </div><!--/.nav-collapse -->
-		</div>
-	  </div>
-	</div>
 <div class="container-fluid" id="main-scroll">
 	  <div class="row-fluid">
 		<div class="span3 bg-none">
@@ -85,9 +60,9 @@
 	  
 </div>
 <div class="navbar-inner-bottom">
+<a herf class = "brand">One-Chat</a>
 	<form id = "chatform">
 	<input type="text" id="chat"/>
-	<input type="submit" />
 	</form>
 </div>
 <script src="http://117.102.189.222:8001/static/js/jquery-1.7.1.min.js"></script>
@@ -101,8 +76,9 @@
 
 	$(function(){
 		///CSS Tweaks
-		$(".span3").height($(document).height()-55)
-		$(".span6").height($(document).height()-55);
+
+		$(".span3").height($(window).height()-55)
+		$(".span6").height($(window).height()-55);
 		$(".r-s").width($(".span3").width());
 		
 		$("#chat").width($(".span6").width())
@@ -110,6 +86,7 @@
 	
 		$("#chat").css("margin-left",-wd/2)
 		$(".well").width($(".span3").width());
+		$(".table-striped").scrollTop($(".table-striped")[0].scrollHeight);
 
 		///WebSocket Starts
 		var host = "117.102.189.222";
@@ -183,9 +160,9 @@
 
 		s.on('message', function(data) {
 			if (data.sys != undefined) {
-				$("#chattings").append("<tr><td><span class='label label-important'>SERVICE</span><div><i class='icon-time'></i>"+pubDate()+"</div></td><td>"+ data.sys +"</td></tr>");
+				$("#chattings").prepend("<tr><td><span class='label label-important'>SERVICE</span><div><i class='icon-time'></i>"+pubDate()+"</div></td><td>"+ data.sys +"</td></tr>");
 			}else if( data.chat != undefined){
-				$("#chattings").append("<tr><td><span class='label label-important'>"+data.nick+ "</span><div><i class='icon-time'></i>"+ pubDate()+"</div></td><td>" + data.chat +"</td></tr>");
+				$("#chattings").prepend("<tr><td><span class='label label-important'>"+data.nick+ "</span><div><i class='icon-time'></i>"+ pubDate()+"</div></td><td>" + data.chat +"</td></tr>");
 			}else if (data.uid != undefined ){
 				uid = data.uid
 			};
@@ -197,7 +174,7 @@
 			var line = $('#chatform [type=text]').val();
 			$('#chatform [type=text]').val('');
 			s.send('{"type":"' + uid + '","content":"' + line + '"}');
-			$("#main-scroll").scrollTop($("#main-scroll")[0].scrollHeight);
+			///$("#main-scroll").scrollTop($("#main-scroll")[0].scrollHeight);
 			return false;
 		});
 	});
