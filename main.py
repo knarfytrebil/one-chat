@@ -96,7 +96,7 @@ class ChatConnection(tornadio2.conn.SocketConnection):
 		self.user.GenNick()
 		self.user.GenUid()
 		self.send(dict(uid=self.user.uid))
-		self.send(dict(sys="Warning.. %s Connected...." % self.user.uid))
+		self.send(dict(sys="Warning.. %s Connected...." % self.user.ip))
 		self.participants.add(self)
 
 	def on_message(self, message):

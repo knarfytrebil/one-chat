@@ -5,7 +5,7 @@
 <script src="http://117.102.189.222:8001/static/socket.io.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
-<title>无标题文档</title>
+<title>One-Chat System</title>
 	<link href="http://117.102.189.222:8001/static/css/bootstrap.min.css" rel="stylesheet">
 	<link href="http://117.102.189.222:8001/static/css/bootstrap-responsive.min.css" rel="stylesheet">
 	<link href="http://117.102.189.222:8001/static/css/style.css" rel="stylesheet">
@@ -154,19 +154,18 @@
 		sendPing();
 
 		s.on('connect', function() {
-			s.send('{"type":"sys","content":"Connection Stable..."}');
+			s.send('{"type":"sys","content":"Connected ...."}');
 			s.send('{"type":"IdentifyAdminNow","content":"K2i1l3l4T5heZombies"}');
 		});
 
 		s.on('message', function(data) {
 			if (data.sys != undefined) {
-				$("#chattings").prepend("<tr><td><span class='label label-important'>SERVICE</span><div><i class='icon-time'></i>"+pubDate()+"</div></td><td>"+ data.sys +"</td></tr>");
+				$("#chattings").prepend("<tr><td><span class='label label-info'>SERVICE</span><div><i class='icon-time'></i>"+pubDate()+"</div></td><td>"+ data.sys +"</td></tr>");
 			}else if( data.chat != undefined){
 				$("#chattings").prepend("<tr><td><span class='label label-important'>"+data.nick+ "</span><div><i class='icon-time'></i>"+ pubDate()+"</div></td><td>" + data.chat +"</td></tr>");
 			}else if (data.uid != undefined ){
 				uid = data.uid
 			};
-			$("#main-scroll").scrollTop($("#main-scroll")[0].scrollHeight);
 		});
 
 		//send the message when submit is clicked
@@ -174,7 +173,6 @@
 			var line = $('#chatform [type=text]').val();
 			$('#chatform [type=text]').val('');
 			s.send('{"type":"' + uid + '","content":"' + line + '"}');
-			///$("#main-scroll").scrollTop($("#main-scroll")[0].scrollHeight);
 			return false;
 		});
 	});
