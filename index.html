@@ -34,12 +34,7 @@
 				<!--chart-->
       <div class="well chart clearfix">
       	<div class="chart-item" id="chart1">
-        	<script type="text/javascript">
-				$(function () {
-					var d1 = [[1, 10], [2, 2], [3, 3],[5,5],[6,5]];
-					
-				});				
-            </script>
+
         </div>
         <br>
         <div class="chart-item" id="chart2">
@@ -140,7 +135,7 @@
 			if (d1.length > 100) {
 				d1.slice(1);
 			};
-			$.plot($("#chart1"), [d1],{ series: {lines: { show: true, lineWidth: 1 }, shadowSize: 0 },xaxis: { ticks: [], mode: "time" }, yaxis: { ticks: [], min: 0, autoscaleMargin: 0.1 },selection: { mode: "x" } });
+			$.plot($("#chart1"), [d1],{ series: { lines: { show: true, lineWidth: 1 }, shadowSize: 0 },xaxis: { ticks: [], mode: "time" }, yaxis: { ticks: [], autoscaleMargin: 0.1 },selection: { mode: "x" } });
 			$('#ping').text((now.getTime() - client.getTime()).toString());
 			$('#admin').text(admin);            
 
