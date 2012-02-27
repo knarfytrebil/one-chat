@@ -66,7 +66,7 @@
 </div>
 <div class="navbar-inner-bottom">
 	<a herf class = "brand">Stachat</a>
-	<button class="btn btn-primary" data-toggle="button" id="casting">BroadCast</button>
+	<button class="btn btn-primary" data-toggle="button" id="casting" onclick="javascript:toggleCast();">BroadCast</button>
 	<form id = "chatform">
 	<input type="text" id="chat"/>
 	</form>
@@ -74,7 +74,7 @@
 <script type="text/javascript">
 	///Initiating the global variables
 	var uid = "";
-
+	var cast = 0;
 	$(function(){
 		///CSS Tweaks
 
@@ -177,6 +177,16 @@
 			return false;
 		});
 	});
+	///Other Functions
+	function toggleCast()
+	{	
+		$('#casting').button('toggle');
+		if (cast == 0) {
+			cast = 1;
+		}else{
+			cast = 0
+		};
+	}
 </script>
 </body>
 </html>
