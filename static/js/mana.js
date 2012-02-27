@@ -1,6 +1,6 @@
 //plotting pie chart
 function PlotPie(){
-	
+
 }
 var data = [];
 	var series = Math.floor(Math.random()*6)+1;
@@ -61,8 +61,3 @@ function toggleCast()
 		cast = 0
 	};
 }
-//获取当前访客与之对话
-$('.nav-list li a').click(function(){
-	var num = $(this).text();
-	$('#chat').val(num + '#');	
-});
