@@ -173,7 +173,11 @@
 		$('#chatform').submit(function (evt) {
 			var line = $('#chatform [type=text]').val();
 			$('#chatform [type=text]').val('');
-			s.send('{"type":"' + uid + '","content":"' + line + '"}');
+			var broad = "BroadCast#"
+			if (cast == 0) {
+				broad = "";
+			};
+			s.send('{"type":"' + uid + '","content":"' + broad + line + '"}');
 			return false;
 		});
 	});
