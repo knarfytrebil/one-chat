@@ -129,7 +129,7 @@ class ChatConnection(tornadio2.conn.SocketConnection):
 			#The Broadcasting
 			if target == "BroadCast":
 				for p in self.participants:
-					p.send(dict(chat=c,nick=nick))
+					p.send(dict(broadcast=c,nick=nick))
 				return
 			#Normal Distribution
 			for p in self.participants:
