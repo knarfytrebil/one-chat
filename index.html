@@ -136,11 +136,11 @@
 			var now = new Date();
 
 			$('#users').text(total);
-			d1.push([Math.round(new Date().getTime()/1000),total])
+			d1.push([Math.round(new Date().getTime()),total])
 			if (d1.length > 100) {
 				d1.slice(1);
 			};
-			$.plot($("#chart1"), [d1]);
+			$.plot($("#chart1"), [d1],{ series: {lines: { show: true, lineWidth: 1 }, shadowSize: 0 },xaxis: { ticks: [], mode: "time" }, yaxis: { ticks: [], min: 0, autoscaleMargin: 0.1 },selection: { mode: "x" } });
 			$('#ping').text((now.getTime() - client.getTime()).toString());
 			$('#admin').text(admin);            
 
