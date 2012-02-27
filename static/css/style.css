@@ -22,7 +22,7 @@ body{ padding-top: 5px;height:100%;overflow-y:auto;overflow-x:hidden}
 .navbar-search input{ border-radius:0;}
 .nav-list .active a{ width:100%} 
 .well{ width:100%;padding:0}
-.well span{ font-size:28px;}
+.well span{ font-size:24px;}
 .well span font{ font-size:28px;color: #F00}
 .cf:before, .cf:after {
     content:"";
@@ -37,6 +37,6 @@ body{ padding-top: 5px;height:100%;overflow-y:auto;overflow-x:hidden}
 .navbar-inner-bottom .brand {float:left;display:block;padding:8px 20px 12px;font-size:20px;font-weight:200;line-height:1;color:#ffffff;}
 .navbar-inner-bottom .btn {float:right;display:block;font-size:15px;margin-right:220px;margin-top:5px;}
 .container-fluid{ padding-bottom:45px;}
-.chart{margin-left:9px; position:fixed; _position:absolute; top:40px;}
+.chart{margin-left:9px; position:fixed; _position:absolute; top:45px;}
 .chart-item{ margin-left:10px;border-radius: 3px 3px 3px 3px;line-height: 30px;min-height: 30px;text-align: center; height:200px; margin-bottom:20px; margin-top:15px;}
 .chart .span3{ background:none; height:200px;}
