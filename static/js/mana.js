@@ -1,24 +1,16 @@
 //plotting pie chart
-function PlotPie(){
-
-}
-var data = [];
-	var series = Math.floor(Math.random()*6)+1;
-	for( var i = 0; i<series; i++)
-	{
-		data[i] = { label: "Series"+(i+1), data: Math.floor(Math.random()*100)+1 }
-	}
-
+function PlotPie(data,place){
 	// DEFAULT
-$.plot($("#chart2"), data,
-{
-		series: {
-			pie: { 
-				innerRadius: 0.5,
-				show: true
+	$.plot($(place), data,
+	{
+			series: {
+				pie: { 
+					innerRadius: 0.5,
+					show: true
+				}
 			}
-		}
-});
+	});
+}
 
 //now time
 function pubDate(){

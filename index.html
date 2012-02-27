@@ -37,38 +37,17 @@
         	<script type="text/javascript">
 				$(function () {
 					var d1 = [[1, 10], [2, 2], [3, 3],[5,5],[6,5]];
-					$.plot($("#chart1"), [d1]);
-				});
-				
+					
+				});				
             </script>
         </div>
         <br>
         <div class="chart-item" id="chart2">
-        	<script type="text/javascript">
 
-            </script>
         </div>
         
          <div class="chart-item" id="chart3">
-        	<script type="text/javascript">
-				var data = [];
-					var pp = Math.floor(Math.random()*6)+1;
-					for( var i = 0; i<pp; i++)
-					{
-						data[i] = { label: "pp"+(i+1), data: Math.floor(Math.random()*20)+1 }
-					}
-				
-					// DEFAULT
-				$.plot($("#chart3"), data,
-				{
-						series: {
-							pie: { 
-								innerRadius: 0.5,
-								show: true
-							}
-						}
-				});
-            </script>
+
         </div>
         
       </div>
@@ -106,7 +85,6 @@
 			  <li><span class="label label-info">搜索引擎</span><a href="javascript:$('#chat').val('133013960418905#');">133013960418905</a></li>
 			 </ul>          
 		</div>
-		
 	  </div>
 	  
 </div>
@@ -121,6 +99,8 @@
 	///Initiating the global variables
 	var uid = "";
 	var cast = 0;
+	var d1 = [];
+
 	$(function(){
 
 		///CSS Tweaks
@@ -156,6 +136,13 @@
 			var now = new Date();
 
 			$('#users').text(total);
+			d1.push([pubDate(),total])
+			if (d1.length > 100) {
+				d1.reverse()
+				d1.pop()
+				d1.reverse()
+			};
+			$.plot($("#chart1"), [d1]);
 			$('#ping').text((now.getTime() - client.getTime()).toString());
 			$('#admin').text(admin);            
 
