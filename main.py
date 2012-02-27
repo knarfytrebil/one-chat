@@ -126,10 +126,14 @@ class ChatConnection(tornadio2.conn.SocketConnection):
 						c = msg.content
 					if c == '':
 						return
+			#The Broadcasting
+			if target == "BroadCast":
+				for p in self.participants:
+					p.send(dict(chat=c,nick=nick))
+				return
+			#Normal Distribution
 			for p in self.participants:
 				if p.user.uid == str(msg.type) or p.user.admin == 1 or p.user.nick == target:
-					p.send(dict(chat=c,nick=nick))
-				if target == "BroadCast":
 					p.send(dict(chat=c,nick=nick))
 
 	def on_close(self):
