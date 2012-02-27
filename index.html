@@ -8,6 +8,8 @@
 <script src="http://117.102.189.222:8001/static/js/bootstrap-button.js"></script>
 <script src="http://117.102.189.222:8001/static/js/flot.js"></script>
 <script src="http://117.102.189.222:8001/static/socket.io.js"></script>
+<script type="text/javascript" src="http://117.102.189.222:8001/static/js/jquery.flot.js"></script>
+<script type="text/javascript" src="http://117.102.189.222:8001/static/js/jquery.flot.pie.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 <title>能焰实时统计系统 ALPHA</title>
@@ -26,6 +28,64 @@
 					<span id = "ping"></span>
 					<span id = "admin"></span>
 				</div>
+	<!--chart-->
+      <div class="well chart clearfix">
+      	<div class="chart-item" id="chart1">
+        	<script type="text/javascript">
+				$(function () {
+					var d1 = [[1, 10], [2, 2], [3, 3],[5,5],[6,5]];
+					$.plot($("#chart1"), [d1]);
+				});
+				
+            </script>
+        </div>
+        
+        <div class="chart-item" id="chart2">
+        	<script type="text/javascript">
+				var data = [];
+					var series = Math.floor(Math.random()*6)+1;
+					for( var i = 0; i<series; i++)
+					{
+						data[i] = { label: "Series"+(i+1), data: Math.floor(Math.random()*100)+1 }
+					}
+				
+					// DEFAULT
+				$.plot($("#chart2"), data,
+				{
+						series: {
+							pie: { 
+								innerRadius: 0.5,
+								show: true
+							}
+						}
+				});
+            </script>
+        </div>
+        
+         <div class="chart-item" id="chart3">
+        	<script type="text/javascript">
+				var data = [];
+					var pp = Math.floor(Math.random()*6)+1;
+					for( var i = 0; i<pp; i++)
+					{
+						data[i] = { label: "pp"+(i+1), data: Math.floor(Math.random()*20)+1 }
+					}
+				
+					// DEFAULT
+				$.plot($("#chart3"), data,
+				{
+						series: {
+							pie: { 
+								innerRadius: 0.5,
+								show: true
+							}
+						}
+				});
+            </script>
+        </div>
+        
+      </div>
+   <!--chart end-->
 			</div>
 		</div>
 		<div class="span6">
@@ -76,7 +136,7 @@
 	var uid = "";
 	var cast = 0;
 	$(function(){
-		
+
 		///CSS Tweaks
 		$(".span3").height($(window).height()-55)
 		$(".span6").height($(window).height()-55);
