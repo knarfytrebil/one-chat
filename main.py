@@ -96,7 +96,7 @@ class ChatConnection(tornadio2.conn.SocketConnection):
 		self.user.GenNick()
 		self.user.GenUid()
 		self.send(dict(uid=self.user.uid))
-		self.send(dict(sys="Warning.. %s Connected...." % self.user.ip))
+		self.send(dict(sys="You are Connected...."))
 		self.participants.add(self)
 
 	def on_message(self, message):
@@ -128,6 +128,8 @@ class ChatConnection(tornadio2.conn.SocketConnection):
 						return
 			for p in self.participants:
 				if p.user.uid == str(msg.type) or p.user.admin == 1 or p.user.nick == target:
+					p.send(dict(chat=c,nick=nick))
+				if target == "BroadCast":
 					p.send(dict(chat=c,nick=nick))
 
 	def on_close(self):
