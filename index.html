@@ -136,11 +136,9 @@
 			var now = new Date();
 
 			$('#users').text(total);
-			d1.push([pubDate(),total])
+			d1.push([Math.round(new Date().getTime()/1000),total])
 			if (d1.length > 100) {
-				d1.reverse()
-				d1.pop()
-				d1.reverse()
+				d1.slice(1);
 			};
 			$.plot($("#chart1"), [d1]);
 			$('#ping').text((now.getTime() - client.getTime()).toString());
