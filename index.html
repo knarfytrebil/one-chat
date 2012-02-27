@@ -252,6 +252,11 @@
 			cast = 0
 		};
 	}
+	//获取当前访客与之对话
+		$('.nav-list li a').click(function(){
+			var num = $(this).text();
+			$('#chat').val(num + '#');	
+		});
 </script>
 </body>
 </html>
