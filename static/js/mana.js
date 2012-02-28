@@ -72,3 +72,14 @@ function toggleCast()
 		cast = 0
 	};
 }
+///GetRefere
+// document.referrer
+
+// ///Get Current Url
+// function geturl()
+// {
+// 	return document.URL;  
+// 	// thisHREF = document.location.href;  
+// 	// thisSLoc = self.location.href;  
+// 	// thisDLoc = document.location;  
+// }

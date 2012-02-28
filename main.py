@@ -98,7 +98,7 @@ class ChatConnection(tornadio2.conn.SocketConnection):
 		self.send(dict(uid=self.user.uid))
 		self.send(dict(sys="You are Connected...."))
 		self.participants.add(self)
-		print dir(info)
+		print dir(info.arguments)
 
 	def on_message(self, message):
 		# Pong message back
@@ -117,7 +117,7 @@ class ChatConnection(tornadio2.conn.SocketConnection):
 			target = ""
 			c = msg.content	
 			for p in self.participants:
-				if p.user.uid == str(msg.type):
+				if p.user.uid == str(msg.type) or p.user.uid == str(msg.content):
 					nick = p.user.nick
 				if p.user.admin == 1:
 					target = msg.content.split('#')[0]
