@@ -125,7 +125,7 @@
 
 			//d1
 			$('#users').text(total);
-			d1.push([Math.round(new Date().getTime()),total])
+			d1.push([Math.round(new Date().getTime()),total]);
 			if (d1.length > 100) {
 				d1.slice(1);
 			};
@@ -133,7 +133,7 @@
 			
 			//d2
 			$('#ping').text((now.getTime() - client.getTime()).toString());
-			d2.push([Math.round(new Date().getTime()),(now.getTime() - client.getTime()))
+			d2.push([Math.round(new Date().getTime()),(now.getTime() - client.getTime())]);
 			if (d2.length > 100) {
 				d2.slice(1);
 			};
