@@ -26,14 +26,14 @@
 		<div class="span3 bg-none">
 			<div class="span3-con">
 				<div class="well">
-					<span id = "ping"></span>
 					<span id = "admin"></span>
 				</div>
 			</div>
 				<!--chart-->
       <div class="well chart clearfix">
-      	在线人数：<span id = "users">loading...</span>
+      	<span>在线人数：</span><span id = "users">loading...</span>
       	<div class="chart-item" id="chart1"></div>
+      	<span>服务器延迟：</span><span id = "ping">loading...</span>
         <div class="chart-item" id="chart2"></div>
         <div class="chart-item" id="chart3"></div>
         
@@ -87,6 +87,7 @@
 	var uid = "";
 	var cast = 0;
 	var d1 = [];
+	var d2 = [];
 
 	$(function(){
 
@@ -122,13 +123,22 @@
 			var admin = data.admin;
 			var now = new Date();
 
+			//d1
 			$('#users').text(total);
 			d1.push([Math.round(new Date().getTime()),total])
 			if (d1.length > 100) {
 				d1.slice(1);
 			};
-			$.plot($("#chart1"), [d1],{ series: { lines: { show: true, lineWidth: 1 }, shadowSize: 0 },xaxis: { ticks: [], mode: "time" }, yaxis: { ticks: [], autoscaleMargin: 0.1 },selection: { mode: "x" } });
+			PlotOverView(d1,"#chart1");
+			
+			//d2
 			$('#ping').text((now.getTime() - client.getTime()).toString());
+			d2.push([Math.round(new Date().getTime()),(now.getTime() - client.getTime()))
+			if (d2.length > 100) {
+				d2.slice(1);
+			};
+			PlotOverView(d2,"#chart2");
+
 			$('#admin').text(admin);            
 
 		});

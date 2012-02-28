@@ -1,5 +1,6 @@
 //plotting pie chart
-function PlotPie(data,place){
+function PlotPie(data,place)
+{
 	// DEFAULT
 	$.plot($(place), data,
 	{
@@ -12,8 +13,26 @@ function PlotPie(data,place){
 	});
 }
 
+function PlotOverView(data,place)
+{
+	$.plot($(place), [data],{ 
+		series: { 
+			lines: { show: true, lineWidth: 1 }, 
+			shadowSize: 0 
+		},
+		xaxis: { 
+			ticks: [], mode: "time" 
+		}, 
+		yaxis: { 
+			ticks: [], autoscaleMargin: 0.1 
+		},
+		selection: { mode: "x" } 
+	});
+}
+
 //now time
-function pubDate(){
+function pubDate()
+{
 	var date = new Date()
 	var h = date.getHours(); 
 	var m = date.getMinutes(); 
