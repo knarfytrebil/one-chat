@@ -98,7 +98,6 @@ class ChatConnection(tornadio2.conn.SocketConnection):
 		self.send(dict(uid=self.user.uid))
 		self.send(dict(sys="You are Connected...."))
 		self.participants.add(self)
-		print dir(info.arguments)
 
 	def on_message(self, message):
 		# Pong message back
@@ -115,13 +114,17 @@ class ChatConnection(tornadio2.conn.SocketConnection):
 		else:
 			nick = ""
 			target = ""
-			c = msg.content	
+			referrer = ""
+			location = ""
+			c = msg.content
 			for p in self.participants:
 				if p.user.uid == str(msg.type):
 					nick = p.user.nick
 				if p.user.uid == str(msg.content):
 					nick = p.user.nick
-					p.send(dict(chat="UserConnected",nick=nick,referrer=msg.referrer,location=msg.location))
+					target = "Admin"
+					referrer = msg.referrer
+					location = msg.location
 					return
 				if p.user.admin == 1:
 					target = msg.content.split('#')[0]
@@ -135,6 +138,12 @@ class ChatConnection(tornadio2.conn.SocketConnection):
 			if target == "BroadCast":
 				for p in self.participants:
 					p.send(dict(broadcast=c,nick=nick))
+				return
+			#For Admin Only
+			if target == "Admin":
+				for p in self.participants:
+					if p.user.admin == 1:
+						p.send(dict(chat="UserConnected",nick=nick,referrer=referrer,location=location))
 				return
 			#Normal Distribution
 			for p in self.participants:
