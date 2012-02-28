@@ -98,6 +98,7 @@ class ChatConnection(tornadio2.conn.SocketConnection):
 		self.send(dict(uid=self.user.uid))
 		self.send(dict(sys="You are Connected...."))
 		self.participants.add(self)
+		print dir(info)
 
 	def on_message(self, message):
 		# Pong message back
