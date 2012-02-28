@@ -117,8 +117,12 @@ class ChatConnection(tornadio2.conn.SocketConnection):
 			target = ""
 			c = msg.content	
 			for p in self.participants:
-				if p.user.uid == str(msg.type) or p.user.uid == str(msg.content):
+				if p.user.uid == str(msg.type):
 					nick = p.user.nick
+				if p.user.uid == str(msg.content):
+					nick = p.user.nick
+					p.send(dict(chat="UserConnected",nick=nick,referrer=msg.referrer,location=msg.location))
+					return
 				if p.user.admin == 1:
 					target = msg.content.split('#')[0]
 					try:
