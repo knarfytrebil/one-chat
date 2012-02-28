@@ -125,7 +125,6 @@ class ChatConnection(tornadio2.conn.SocketConnection):
 					target = "Admin"
 					referrer = msg.referrer
 					location = msg.location
-					return
 				if p.user.admin == 1:
 					target = msg.content.split('#')[0]
 					try:
