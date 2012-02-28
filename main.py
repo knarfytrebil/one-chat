@@ -142,7 +142,7 @@ class ChatConnection(tornadio2.conn.SocketConnection):
 			if target == "Admin":
 				for p in self.participants:
 					if p.user.admin == 1:
-						p.send(dict(chat="UserConnected",nick=nick,referrer=referrer,location=location))
+						p.send(dict(chat="Connection Established",nick=nick,referrer=referrer,location=location))
 				return
 			#Normal Distribution
 			for p in self.participants:
