@@ -134,7 +134,7 @@
 			//d2
 			$('#ping').text((now.getTime() - client.getTime()).toString());
 			d2.push([Math.round(new Date().getTime()),(now.getTime() - client.getTime())]);
-			if (d2.length > 100) {
+			if (d2.length > 10) {
 				d2.slice(1);
 			};
 			PlotOverView(d2,"#chart2");
