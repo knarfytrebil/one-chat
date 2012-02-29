@@ -6,6 +6,7 @@
 <script src="http://117.102.189.222:8001/static/js/bootstrap-tab.js"></script>
 <script src="http://117.102.189.222:8001/static/js/bootstrap-typeahead.js"></script>
 <script src="http://117.102.189.222:8001/static/js/bootstrap-button.js"></script>
+<script src="http://117.102.189.222:8001/static/js/bootstrap-tooltip.js"></script>
 <script src="http://117.102.189.222:8001/static/js/flot.js"></script>
 <script src="http://117.102.189.222:8001/static/socket.io.js"></script>
 <script type="text/javascript" src="http://117.102.189.222:8001/static/js/jquery.flot.js"></script>
@@ -65,12 +66,8 @@
 		  </table>
 		</div>
 		<div class="span3">
-			<ul class="nav nav-list">
-			  <li class="active"><span class="label label-success">邮件</span><a href="javascript:$('#chat').val('133013960418905#');">133013960418905</a></li>
-			  <li><span class="label">野人</span><a href="javascript:$('#chat').val('133013960418905#');">133013960418905</a></li>
-			  <li><span class="label label-important">其他</span><a href="javascript:$('#chat').val('133013960418905#');">133013960418905</a></li>
-			  <li><span class="label label-info">搜索引擎</span><a href="javascript:$('#chat').val('133013960418905#');">133013960418905</a></li>
-			 </ul>          
+			<ul class="nav nav-list" id="user_list">
+			</ul>          
 		</div>
 	  </div>
 	  
@@ -170,7 +167,7 @@
 			}else if( data.chat != undefined && data.location == "" && data.referrer == ""){
 				$("#chattings").prepend("<tr><td><span class='label label-important'>"+data.nick+ "</span><div><i class='icon-time'></i>"+ pubDate()+"</div></td><td>" + data.chat + "</td></tr>");
 			}else if (data.chat != undefined && data.location != ""){
-				service_msg("#chattings",data);
+				service_msg("#user_list",data);
 			}else if (data.uid != undefined ){
 				uid = data.uid
 			};
