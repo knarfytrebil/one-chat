@@ -170,7 +170,7 @@
 			}else if( data.chat != undefined && data.location == "" && data.referrer == ""){
 				$("#chattings").prepend("<tr><td><span class='label label-important'>"+data.nick+ "</span><div><i class='icon-time'></i>"+ pubDate()+"</div></td><td>" + data.chat + analyze(data.referrer) + data.location +"</td></tr>");
 			}else if (data.chat != undefined && data.location != ""){
-				$("#chattings").prepend("<tr><td><span class='label'>SYS-INFO</span><div><i class='icon-time'></i>"+ pubDate()+"</div></td><td>New Connection::" + analyze(data.referrer) + data.location +"</td></tr>");
+				$("#chattings").prepend("<tr><td><span class='label'>新链接</span><div><i class='icon-time'></i>"+ pubDate()+"</div></td><td>New Connection::<span class='label label-important'>" + data.nick + "</span>" + analyze(data.referrer) + data.location +"</td></tr>");
 			}else if (data.uid != undefined ){
 				uid = data.uid
 			};
