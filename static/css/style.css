@@ -1,7 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
 body{ padding-top: 5px;height:100%;overflow-y:auto;overflow-x:hidden}
-.row-fluid [class*="span"] {background-color: #EEEEEE;border-radius: 3px 3px 3px 3px;line-height: 30px;min-height: 30px;text-align: center;}
 .row-fluid .nav-list{ text-align:left}
 .row-fluid .span3{height:100%; position:relative;}
 .row-fluid .span3.bg-none{ background:none}
