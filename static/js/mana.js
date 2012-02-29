@@ -72,14 +72,25 @@ function toggleCast()
 		cast = 0
 	};
 }
-///GetRefere
-// document.referrer
+//Input Analyze
+function analyze(referrer)
+{
+	var r = "";
+	var reCat1 = /one-auction.com/i;
+	
 
-// ///Get Current Url
-// function geturl()
-// {
-// 	return document.URL;  
-// 	// thisHREF = document.location.href;  
-// 	// thisSLoc = self.location.href;  
-// 	// thisDLoc = document.location;  
-// }
+	if (referrer == "") {
+		r = "直接着陆"
+	}else{
+		var result = referrer.search(reCat1);	
+		switch (result)
+		{
+			case 7:
+				r = "站内";
+				break;
+			default:
+				r = referrer;
+		}
+	}; 
+	return r
+}
