@@ -77,7 +77,7 @@
 </div>
 <div class="navbar-inner-bottom">
 	<a herf class = "brand">Sta:Chat</a>
-	<button class="btn btn-primary" data-toggle="button" id="casting" onclick="javascript:toggleCast();">BroadCast</button>
+	<button class="btn btn-primary" data-toggle="button" id="casting" onclick="javascript:toggleCast();">全站广播</button>
 	<form id = "chatform">
 	<input type="text" id="chat"/>
 	</form>
@@ -112,7 +112,7 @@
 		
 		// Establish event handlers
 		s.on('disconnect', function() {
-			sock.socket.reconnect();
+			s.socket.reconnect();
 		});
 		
 		// Ping
@@ -170,7 +170,7 @@
 			}else if( data.chat != undefined && data.location == "" && data.referrer == ""){
 				$("#chattings").prepend("<tr><td><span class='label label-important'>"+data.nick+ "</span><div><i class='icon-time'></i>"+ pubDate()+"</div></td><td>" + data.chat + "</td></tr>");
 			}else if (data.chat != undefined && data.location != ""){
-				$("#chattings").prepend("<tr><td><span class='label'>新链接::</span><div><i class='icon-time'></i>"+ pubDate()+"</div></td><td><span class='label label-important'>" + data.nick + "</span><span class='label label-warning'>" + analyze(data.referrer) + "</span>"+ data.location +"</td></tr>");
+				$("#chattings").prepend("<tr><td><span class='label'>新链接</span><div><i class='icon-time'></i>"+ pubDate()+"</div></td><td><span class='label label-important'>" + data.nick + "</span>&nbsp<span class='label label-warning'>" + analyze(data.referrer) + "</span>"+ data.location +"</td></tr>");
 			}else if (data.uid != undefined ){
 				uid = data.uid
 			};
