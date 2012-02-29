@@ -4,7 +4,7 @@ body{ padding-top: 5px;height:100%;overflow-y:auto;overflow-x:hidden}
 .row-fluid .nav-list{ text-align:left}
 .row-fluid .span3{height:100%; position:relative;}
 .row-fluid .span3.bg-none{ background:none}
-.row-fluid .span3 .span3-con{ position:fixed; _position:absolute; background:none;left:0;}
+.row-fluid .span3 .span3-con{ position:fixed; _position:absolute; background:none;left:0; border:0;}
 .row-fluid .span6{ background:#fff; position:relative}
 .navbar-inner-bottom{ position:fixed;_position:absolute;bottom:0;left:0; width:100%;background:#2C2C2C;height:42px;}
 .navbar-inner-bottom input{position:fixed;_position:absolute;bottom:0;left:50%}
@@ -20,7 +20,7 @@ body{ padding-top: 5px;height:100%;overflow-y:auto;overflow-x:hidden}
 .navbar-inner .r-s{float:right}
 .navbar-search input{ border-radius:0;}
 .nav-list .active a{ width:100%} 
-#bd .well{ width:100%;padding:0;border:0;background:none;border-radius:0;}
+.well{ width:100%;padding:0;border:0;background:none;border-radius:0;}
 .well span{ font-size:24px;}
 .well span font{ font-size:28px;color: #F00}
 .cf:before, .cf:after {
