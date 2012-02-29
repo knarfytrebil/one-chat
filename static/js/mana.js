@@ -99,6 +99,7 @@ function analyze(referrer)
 function service_msg(holder,data)
 {
 	$(holder).prepend("<li><span class='label'><a href='#' rel='tooltip' title=" + analyze(data.referrer) + ">来源</a></span><a href='javascript:$('#chat').val('"+ data.nick + "'#);')>" + data.nick + "</a></li>");
+	$('#user_list a').tooltip();
 	//$("#chattings").prepend("<tr><td><span class='label'>新链接</span><div><i class='icon-time'></i>"+ pubDate()+"</div></td><td><span class='label label-important'>" + data.nick + "</span>&nbsp<span class='label label-warning'>来源：" + analyze(data.referrer) + "</span>&nbsp<span class='label'>当前页面：</span><a href='"+ data.location + "'>"+ data.location +"</a></td></tr>");
 	//$(holder).prepend("<tr><td><span class='label'>新链接</span><div><i class='icon-time'></i>"+ pubDate()+"</div></td><td><span class='label'>当前页面</span>&nbsp<a href='"+ data.location + "'>"+ data.location +"</a>&nbsp<span class='label label-important'>" + data.nick + "</span>&nbsp<span class='label label-warning'>" + analyze(data.referrer) + "</span></td></tr>");
 }
