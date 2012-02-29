@@ -10,7 +10,7 @@ body{ padding-top: 5px;height:100%;overflow-y:auto;overflow-x:hidden}
 .navbar-inner-bottom{ position:fixed;_position:absolute;bottom:0;left:0; width:100%;background:#2C2C2C;height:42px;}
 .navbar-inner-bottom input{position:fixed;_position:absolute;bottom:0;left:50%}
 .nav-list{height:600px;}
-.span3 .label{ position:absolute;right:0;bottom:0;*right:10px}
+.span3 .label{ display: inline-block;float: right;margin-right: 5px;}
 .span6 .label{ font-size:12px;}
 .row-fluid .nav-list li{ margin-bottom:3px; clear:both; position:relative; float:left; width:100%;}
 .search{ margin-top:15px; width:250px; +margin-bottom:-20px} 
