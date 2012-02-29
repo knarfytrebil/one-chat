@@ -20,7 +20,7 @@ body{ padding-top: 5px;height:100%;overflow-y:auto;overflow-x:hidden}
 .navbar-inner .r-s{float:right}
 .navbar-search input{ border-radius:0;}
 .nav-list .active a{ width:100%} 
-.well{ width:100%;padding:0;border:0;background:none;border-radius:0;}
+.well{ width:100%;padding:0;border:0;background:none;border-radius:0;box-shadow:none;}
 .well span{ font-size:24px;}
 .well span font{ font-size:28px;color: #F00}
 .cf:before, .cf:after {
