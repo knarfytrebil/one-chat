@@ -117,12 +117,14 @@ class ChatConnection(tornadio2.conn.SocketConnection):
 			referrer = ""
 			location = ""
 			c = msg.content
+			#Cleaning
 			for p in self.participants:
 				if p.user.uid == str(msg.type):
 					nick = p.user.nick
 				if p.user.uid == str(msg.content):
 					nick = p.user.nick
 					target = "Admin"
+					global target
 					referrer = msg.referrer
 					location = msg.location
 				if p.user.admin == 1:
