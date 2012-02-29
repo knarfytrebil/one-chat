@@ -167,8 +167,10 @@
 		s.on('message', function(data) {
 			if (data.sys != undefined) {
 				$("#chattings").prepend("<tr><td><span class='label label-info'>SERVICE</span><div><i class='icon-time'></i>"+pubDate()+"</div></td><td>"+ data.sys +"</td></tr>");
-			}else if( data.chat != undefined){
+			}else if( data.chat != undefined && data.location == "" && data.referrer == ""){
 				$("#chattings").prepend("<tr><td><span class='label label-important'>"+data.nick+ "</span><div><i class='icon-time'></i>"+ pubDate()+"</div></td><td>" + data.chat + analyze(data.referrer) + data.location +"</td></tr>");
+			}else if (data.chat != undefined && data.location != "" && data.referrer != ""){
+				$("#chattings").prepend("<tr><td><span class='label'>SYS-INFO</span><div><i class='icon-time'></i>"+ pubDate()+"</div></td><td>New Connection::" + analyze(data.referrer) + data.location +"</td></tr>");
 			}else if (data.uid != undefined ){
 				uid = data.uid
 			};
