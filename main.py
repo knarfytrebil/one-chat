@@ -123,10 +123,9 @@ class ChatConnection(tornadio2.conn.SocketConnection):
 					nick = p.user.nick
 				if p.user.uid == str(msg.content):
 					nick = p.user.nick
-					target = "Admin"
-					global target
 					referrer = msg.referrer
 					location = msg.location
+					c = "Connection Established ... "
 				if p.user.admin == 1:
 					target = msg.content.split('#')[0]
 					try:
@@ -140,16 +139,10 @@ class ChatConnection(tornadio2.conn.SocketConnection):
 				for p in self.participants:
 					p.send(dict(broadcast=c,nick=nick))
 				return
-			#For Admin Only
-			if target == "Admin":
-				for p in self.participants:
-					if p.user.admin == 1:
-						p.send(dict(chat="Connection Established",nick=nick,referrer=referrer,location=location))
-				return
 			#Normal Distribution
 			for p in self.participants:
 				if p.user.uid == str(msg.type) or p.user.admin == 1 or p.user.nick == target:
-					p.send(dict(chat=c,nick=nick))
+					p.send(dict(chat=c,nick=nick,referrer=referrer,location=location))
 
 	def on_close(self):
 		if self.user.admin == 1:
