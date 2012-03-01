@@ -73,7 +73,7 @@ class IndexHandler(tornado.web.RequestHandler):
 			self.render('login.html')
 		else:
 			if decrypt(cookie).split("##")[0] == USERNAME and decrypt(cookie).split("##")[1] == PASSWD:
-				self.render('index.html')
+				self.render('index_.html')
 			else:
 				self.render('login.html')
 	

@@ -86,17 +86,6 @@
 
 	$(function(){
 
-		///CSS Tweaks
-		$(".span3").height($(window).height()-55)
-		$(".span6").height($(window).height()-55);
-		$(".r-s").width($(".span3").width());
-		
-		$("#chat").width($(".span6").width())
-		var wd = $(".span6").width();
-	
-		$("#chat").css("margin-left",-wd/2)
-		$(".well").width($(".span3").width());
-
 		///WebSocket Starts
 		var host = "117.102.189.222";
 		WEB_SOCKET_SWF_LOCATION = 'http://' + host + ':8001/static/WebSocketMain.swf';

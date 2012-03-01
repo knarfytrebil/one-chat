@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<meta charset="utf-8">
+	<title>能焰客服系统</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<!-- Le styles -->
+	<link href="http://117.102.189.222:8001/static/css/bootstrap.css" rel="stylesheet">
+	<link rel="stylesheet" href="http://117.102.189.222:8001/static/css/styles.css">
+	<style>
+	  body {
+		padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+	  }
+	</style>
+	<link href="http://117.102.189.222:8001/static/css/bootstrap-responsive.css" rel="stylesheet">
+
+	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+	  <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Le fav and touch icons -->
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  </head>
+
+  <body>
+
+	<div class="navbar navbar-fixed-top">
+	  <div class="navbar-inner">
+		<div class="container">
+		  <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		  </a>
+		  <a class="brand" href="#">Mana.Flame</a>
+		  <div class="nav-collapse">
+			<ul class="nav pull-right">
+			<li class="divider-vertical"></li>
+            <li><a href="#">登出系统</a></li>
+          	</ul>
+		  </div><!--/.nav-collapse -->
+		</div>
+	  </div>
+	</div>
+
+	<div class="container">
+	<div class="row show-grid">
+    <div class="span4">
+    	<div class="tabbable">
+    		<ul class="nav nav-tabs">
+    			<li class="active"><a href="#1" data-toggle="tab">实时数据</a></li>
+    			<li><a href="#2" data-toggle="tab">访客列表</a></li>
+  			</ul>
+	    	<div class="tab-content">
+	   			<div class="tab-pane active" id="1">
+	   				<p>在线人数：<strong>0</strong></p>
+	   				<div class="Overview" id="graph_3">Loading....</div>
+	   				<p>延迟时间：<strong>0</strong> ms</p>
+	   				<div class="Overview" id="graph_3">Loading....</div>
+	   				<p>访客来源：</p>
+			    	<div class="BigGraph" id="graph_1">loading....</div>
+			    	<p>访客浏览器：</p>
+			    	<div class="BigGraph" id="graph_2">loading....</div>
+	      		</div>
+		    	<div class="tab-pane" id="2">
+					<ul class="nav nav-tabs nav-stacked">
+        				<li class="active"><a href="#">访客列表</a></li>
+				        <li>
+					        <a href="#">
+					        	133013960418905
+					        	<span class="label">来源</span>
+					        	<span class="label label-info">当前页面</span>
+					        	<span class="label label-warning">00:00:00</span>
+					        </a>
+				    	</li>
+				        <li><a href="#">133013960418905</a></li>
+				    </ul>
+		    	</div>
+	    	</div>
+    	</div>
+    </div>
+    <div class="span8">
+    	<form action="" id="chatform">
+		<input type="text" class="span8" placeholder="Type something…">
+		</form>
+		<div id="chatlogs">	
+	    	<blockquote class="pull-right">
+					<p>12:32:23 <strong>SERVICE</strong></p>
+					<p>
+						Use this document as a way to quick start any new project. All you get is this message and a barebones HTML document.
+					</p>
+					<p>
+						<span class="label label-important">SERVICE</span>
+					</p>
+	    	</blockquote>
+	    	<blockquote class="pull-right">
+					<p>12:32:23 <strong>133013960418905</strong></p>
+					<p>
+						Use this document as a way to quick start any new project. All you get is this message and a barebones HTML document.
+					</p>
+					<p>
+						<span class="label label-warning">133013960418905</span>
+					</p>
+	    	</blockquote>
+	    	<blockquote class="pull-right">
+					<p>12:32:23 <strong>133013960418905</strong></p>
+					<p>
+						Use this document as a way to quick start any new project. All you get is this message and a barebones HTML document.
+					</p>
+					<p>
+						<span class="label label-warning">133013960418905</span>
+						<span class="label label-warning">133013960418905</span>
+					</p>
+	    	</blockquote>
+	    	<blockquote class="pull-right">
+					<p>12:32:23 <strong>133013960418905</strong></p>
+					<p>
+						Use this document as a way to quick start any new project. All you get is this message and a barebones HTML document.
+					</p>
+					<p>
+						<span class="label label-warning">133013960418905</span>
+						<span class="label label-warning">133013960418905</span>
+					</p>
+	    	</blockquote>
+	    		    	<blockquote class="pull-right">
+					<p>12:32:23 <strong>SERVICE</strong></p>
+					<p>
+						Use this document as a way to quick start any new project. All you get is this message and a barebones HTML document.
+					</p>
+					<p>
+						<span class="label label-important">SERVICE</span>
+					</p>
+	    	</blockquote>
+	    	<blockquote class="pull-right">
+					<p>12:32:23 <strong>133013960418905</strong></p>
+					<p>
+						Use this document as a way to quick start any new project. All you get is this message and a barebones HTML document.
+					</p>
+					<p>
+						<span class="label label-warning">133013960418905</span>
+					</p>
+	    	</blockquote>
+	    	<blockquote class="pull-right">
+					<p>12:32:23 <strong>133013960418905</strong></p>
+					<p>
+						Use this document as a way to quick start any new project. All you get is this message and a barebones HTML document.
+					</p>
+					<p>
+						<span class="label label-warning">133013960418905</span>
+						<span class="label label-warning">133013960418905</span>
+					</p>
+	    	</blockquote>
+	    	<blockquote class="pull-right">
+					<p>12:32:23 <strong>133013960418905</strong></p>
+					<p>
+						Use this document as a way to quick start any new project. All you get is this message and a barebones HTML document.
+					</p>
+					<p>
+						<span class="label label-warning">133013960418905</span>
+						<span class="label label-warning">133013960418905</span>
+					</p>
+	    	</blockquote>
+    	</div>
+    </div>
+  	</div>
+	</div> <!-- /container -->
+
+	<!-- Le javascript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="http://117.102.189.222:8001/static/js/jquery-1.7.1.min.js"></script>
+	<script src="http://117.102.189.222:8001/static/js/bootstrap-transition.js"></script>
+	<script src="http://117.102.189.222:8001/static/js/bootstrap-alert.js"></script>
+	<script src="http://117.102.189.222:8001/static/js/bootstrap-modal.js"></script>
+	<script src="http://117.102.189.222:8001/static/js/bootstrap-dropdown.js"></script>
+	<script src="http://117.102.189.222:8001/static/js/bootstrap-scrollspy.js"></script>
+	<script src="http://117.102.189.222:8001/static/js/bootstrap-tab.js"></script>
+	<script src="http://117.102.189.222:8001/static/js/bootstrap-tooltip.js"></script>
+	<script src="http://117.102.189.222:8001/static/js/bootstrap-popover.js"></script>
+	<script src="http://117.102.189.222:8001/static/js/bootstrap-button.js"></script>
+	<script src="http://117.102.189.222:8001/static/js/bootstrap-collapse.js"></script>
+	<script src="http://117.102.189.222:8001/static/js/bootstrap-carousel.js"></script>
+	<script src="http://117.102.189.222:8001/static/js/bootstrap-typeahead.js"></script>
+	<script src="http://117.102.189.222:8001/static/js/bootstrap-tab.js"></script>
+	<script src="http://117.102.189.222:8001/static/js/flot.js"></script>
+	<script src="http://117.102.189.222:8001/static/socket.io.js"></script>
+	<script type="text/javascript" src="http://117.102.189.222:8001/static/js/jquery.flot.js"></script>
+	<script type="text/javascript" src="http://117.102.189.222:8001/static/js/jquery.flot.pie.js"></script>
+	<script type="text/javascript" src="http://117.102.189.222:8001/static/js/jquery.flot.resize.js"></script>
+	<script type="text/javascript" src="http://117.102.189.222:8001/static/js/mana.js"></script>
+	<script type="text/javascript">
+	///Initiating the global variables
+	var uid = "";
+	var cast = 0;
+	var d1 = [];
+	var d2 = [];
+	var place_user = "#users";
+	var place_user_chart = "";
+	var place_ping = "#ping";
+	var place_ping_chart = "";
+	var chatlog = "#chattings";
+	var place_user_list = "#user_list";
+
+	$(function(){
+
+		///WebSocket Starts
+		var host = "117.102.189.222";
+		WEB_SOCKET_SWF_LOCATION = 'http://' + host + ':8001/static/WebSocketMain.swf';
+		var s = new io.connect('http://' + host + ':8002/chat', {
+			rememberTransport: false
+			});
+		var ping = new io.connect('http://' + host + ':8002/ping');
+		
+		// Establish event handlers
+		s.on('disconnect', function() {
+			s.socket.reconnect();
+		});
+		
+		// Ping
+		ping.on('message', function(data) {
+			var client = decodeDate(data.client);
+			var server = decodeDate(data.server);
+			var total = data.total;
+			var admin = data.admin;
+			var now = new Date();
+
+			//d1
+			$(place_user).text(total);
+			d1.push([Math.round(new Date().getTime()),total]);
+			if (d1.length > 100) {
+				d1 = d1.slice(1,d1.length);
+			};
+			PlotOverView(d1,place_user_chat);
+			
+			//d2
+			$(place_ping).text((now.getTime() - client.getTime()).toString());
+			d2.push([Math.round(new Date().getTime()),(now.getTime() - client.getTime())]);
+			if (d2.length > 10) {
+				d2 = d2.slice(1,d2.length);
+			};
+			PlotOverView(d2,place_ping_chart); 
+
+		});
+
+		function sendPing()
+		{
+			ping.json.send({client: encodeDate(new Date()) });
+			setTimeout(sendPing, 5000);
+		}
+		
+		//now time
+		function pubDate(){
+			var date = new Date()
+			var h = date.getHours(); 
+			var m = date.getMinutes(); 
+			var se = date.getSeconds(); 
+			return (h<10 ? "0"+ h : h) +":" +(m<10 ? "0" + m : m) +":" +(se<10 ? "0" +se : se);
+		}
+		sendPing();
+
+		s.on('connect', function() {
+			s.send('{"type":"sys","content":"Connected ...."}');
+			s.send('{"type":"IdentifyAdminNow","content":"K2i1l3l4T5heZombies"}');
+		});
+
+		s.on('message', function(data) {
+			if (data.sys != undefined) {
+				$(chatlog).prepend("<tr><td><span class='label label-info'>SERVICE</span><div><i class='icon-time'></i>"+pubDate()+"</div></td><td>"+ data.sys +"</td></tr>");
+			}else if( data.chat != undefined && data.location == "" && data.referrer == ""){
+				$(chatlog).prepend("<tr><td><span class='label label-important'>"+data.nick+ "</span><div><i class='icon-time'></i>"+ pubDate()+"</div></td><td>" + data.chat + "</td></tr>");
+			}else if (data.chat != undefined && data.location != ""){
+				service_msg(place_user_list,data);
+			}else if (data.uid != undefined ){
+				uid = data.uid
+			};
+		});
+
+		//send the message when submit is clicked
+		$('#chatform').submit(function (evt) {
+			var line = $('#chatform [type=text]').val();
+			$('#chatform [type=text]').val('');
+			var broad = "BroadCast#"
+			if (cast == 0) {
+				broad = "";
+			};
+			s.send('{"type":"' + uid + '","content":"' + broad + line + '"}');
+			return false;
+		});
+	});
+	</script>
+</body>
+</html>
