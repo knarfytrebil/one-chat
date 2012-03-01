@@ -237,7 +237,6 @@
 			if (d1.length > 100) {
 				d1 = d1.slice(1,d1.length);
 			};
-			PlotOverView(d1,place_user_chart);
 			
 			//d2
 			$(place_ping).text((now.getTime() - client.getTime()).toString());
@@ -245,8 +244,10 @@
 			if (d2.length > 10) {
 				d2 = d2.slice(1,d2.length);
 			};
+			
+			//the plotting
 			PlotOverView(d2,place_ping_chart); 
-
+			PlotOverView(d1,place_user_chart);
 		});
 
 		function sendPing()
