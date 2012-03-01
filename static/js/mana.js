@@ -19,7 +19,8 @@ function PlotOverView(data,place)
 	$.plot($(place), [data],{ 
 		series: { 
 			lines: { show: true, lineWidth: 1 }, 
-			shadowSize: 0 
+			shadowSize: 0,
+			borderWidth: 0
 		},
 		xaxis: { 
 			ticks: [], mode: "time" 
