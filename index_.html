@@ -60,10 +60,10 @@
   			</ul>
 	    	<div class="tab-content">
 	   			<div class="tab-pane active" id="1">
-	   				<p>在线人数：<strong>0</strong></p>
+	   				<p>在线人数：<strong id="users">0</strong></p>
 	   				<div class="Overview" id="graph_3">Loading....</div>
-	   				<p>延迟时间：<strong>0</strong> ms</p>
-	   				<div class="Overview" id="graph_3">Loading....</div>
+	   				<p>延迟时间：<strong id="ping">0</strong> ms</p>
+	   				<div class="Overview" id="graph_4">Loading....</div>
 	   				<p>访客来源：</p>
 			    	<div class="BigGraph" id="graph_1">loading....</div>
 			    	<p>访客浏览器：</p>
@@ -202,9 +202,9 @@
 	var d1 = [];
 	var d2 = [];
 	var place_user = "#users";
-	var place_user_chart = "";
+	var place_user_chart = "graph_3";
 	var place_ping = "#ping";
-	var place_ping_chart = "";
+	var place_ping_chart = "graph_4";
 	var chatlog = "#chattings";
 	var place_user_list = "#user_list";
 
