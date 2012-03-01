@@ -20,7 +20,10 @@ function PlotOverView(data,place)
 		series: { 
 			lines: { show: true, lineWidth: 1 }, 
 			shadowSize: 0,
-			borderWidth: 0
+		},
+		grid: { 
+			borderWidth: 0,
+			color: "#FFF" 
 		},
 		xaxis: { 
 			ticks: [], mode: "time" 
