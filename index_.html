@@ -246,8 +246,15 @@
 			};
 			
 			//the plotting
-			PlotOverView(d2,place_ping_chart); 
-			PlotOverView(d1,place_user_chart);
+			try	
+			{
+				PlotOverView(d2,place_ping_chart); 
+				PlotOverView(d1,place_user_chart);
+			}
+			catch (err)
+			{
+				void(0);
+			}
 		});
 
 		function sendPing()
